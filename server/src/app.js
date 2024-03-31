@@ -3,8 +3,6 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { errorHandler } from './middlewares/error.middlewares.js';
 import morgan from "morgan"
-import passport from 'passport';
-import session from "express-session"
 
 const app=express();
 

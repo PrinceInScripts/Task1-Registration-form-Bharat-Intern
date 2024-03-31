@@ -1,1 +1,1 @@
-export default DB_NAME="Registration-Form"
+export const DB_NAME="Registration-Form"
