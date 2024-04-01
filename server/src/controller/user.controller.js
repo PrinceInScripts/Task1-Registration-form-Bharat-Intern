@@ -148,6 +148,20 @@ const logoutUser = asyncHandler(async (req, res) => {
       .json(new ApiError(200, {}, "User Logout Successfully"));
   });
 
+  const getCurrentUser=asyncHandler(async (req,res)=>{
+    const user=await User.findById(req.user._id);
+    
+    return res
+             .status(200)
+             .json(
+                new ApiResponse(
+                    200,
+                    user,
+                    "Current User Fetched Successfully"
+                )
+             )
+  })
+
   const forgotPassword = asyncHandler(async (req, res) => {
     const { email, username } = req.body;
   
@@ -226,4 +240,5 @@ export {
     logoutUser,
     forgotPassword,
     resetForgotPassword,
+    getCurrentUser
 }

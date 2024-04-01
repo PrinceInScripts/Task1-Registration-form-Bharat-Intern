@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { forgotPassword, loginUser, logoutUser, registerUser, resetForgotPassword } from "../controller/user.controller.js"
+import { forgotPassword, getCurrentUser, loginUser, logoutUser, registerUser, resetForgotPassword } from "../controller/user.controller.js"
 import { loginUserValidator, resetForgotPasswordValidator, userForgotPasswordValidator, userRegisterValidators } from "../validators/user.validators.js";
 import { validate } from "../validators/validate.js";
 import { upload } from "../middlewares/multer.middlewares.js"
@@ -12,6 +12,7 @@ router.route("/forgot-password").post(userForgotPasswordValidator(),validate,for
 router.route("/reset-password/:resetPasswordToken").post(resetForgotPasswordValidator(),validate,resetForgotPassword)
 
 router.route("/logout").post(verifyJWT,logoutUser)
+router.route("/me").post(verifyJWT,getCurrentUser)
 
 
 export default router;
