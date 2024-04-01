@@ -1,7 +1,7 @@
 import mongoose,{Schema} from "mongoose";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import { USER_TEMPORARY_TOKEN_EXPIRY, userLoginType, userRolesEnum } from "../constant.js";
+import { USER_TEMPORARY_TOKEN_EXPIRY } from "../constant.js";
 
 const userSchema = new Schema({
            username:{
@@ -26,14 +26,11 @@ const userSchema = new Schema({
            avatar:{
             type:String,
            },
-           firstName:{
+           fullName:{
             type:String,
-            default:"",
+            required:true
            },
-           lastName:{
-            type:String,
-            default:""
-           },
+           
            refreshToken:{
             type:String
            },
