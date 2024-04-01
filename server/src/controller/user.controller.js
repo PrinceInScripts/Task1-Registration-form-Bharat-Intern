@@ -1,5 +1,6 @@
 import { User } from "../models/user.models.js";
 import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { uploadCloudinary } from "../utils/cloudinary.js"
 
@@ -15,13 +16,11 @@ const registerUser=asyncHandler(async (req,res)=>{
   }
 
   const avatarLocalPath=req.file?.path;
-
   if(!avatarLocalPath){
     throw new ApiError(400,"Avatar file is missing")
   }
 
   const avatar=await uploadCloudinary(avatarLocalPath)
-
   if(!avatar){
     throw new ApiError(400,"Error while uploading on avatar file")
   }
