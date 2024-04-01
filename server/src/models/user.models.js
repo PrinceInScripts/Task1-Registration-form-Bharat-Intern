@@ -1,6 +1,7 @@
 import mongoose,{Schema} from "mongoose";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import jwt from "jsonwebtoken"
 import { USER_TEMPORARY_TOKEN_EXPIRY } from "../constant.js";
 
 const userSchema = new Schema({
