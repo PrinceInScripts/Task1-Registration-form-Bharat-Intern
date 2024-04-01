@@ -17,5 +17,9 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(morgan("dev"))
 
+import userRoutes from "../src/routes/user.routes.js"
+
+app.use("/api/v1/users",userRoutes)
+
 app.use(errorHandler)
 export {app}

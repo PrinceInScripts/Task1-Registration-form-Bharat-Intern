@@ -1,0 +1,14 @@
+import { asyncHandler } from "../utils/asyncHandler.js"
+
+const register=asyncHandler(async (req,res)=>{
+    return res.status(200).json({
+        "Success":true
+    }
+        
+    )
+})
+
+
+export {
+    register
+}
