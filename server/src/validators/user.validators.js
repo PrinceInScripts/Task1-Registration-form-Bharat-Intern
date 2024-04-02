@@ -12,6 +12,10 @@ const userRegisterValidators=()=>{
                     .trim()
                     .notEmpty()
                     .withMessage("fullName is required"),
+        body("confirmPassword")
+                    .trim()
+                    .notEmpty()
+                    .withMessage("Confirm Password is required"),
         body("password")
                     .trim()
                     .notEmpty()

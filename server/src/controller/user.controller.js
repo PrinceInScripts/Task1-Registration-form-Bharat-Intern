@@ -26,10 +26,16 @@ const generateAccessAndRefreshToken = async (userId) => {
   };
 
 const registerUser=asyncHandler(async (req,res)=>{
-    const { fullName, email, password } = req.body;
+    const { fullName, email, password,confirmPassword } = req.body;
+
+    if (password !== confirmPassword) {
+      throw new ApiError(400, "Passwords do not match");
+    }
+
+    console.log(fullName,email,password,confirmPassword);
 
    const existedUser = await User.findOne({
-     username 
+     email 
   });
 
   if (existedUser) {
@@ -37,6 +43,8 @@ const registerUser=asyncHandler(async (req,res)=>{
   }
 
   const avatarLocalPath=req.file?.path;
+  // console.log(req);
+  console.log(avatarLocalPath);
   if(!avatarLocalPath){
     throw new ApiError(400,"Avatar file is missing")
   }
