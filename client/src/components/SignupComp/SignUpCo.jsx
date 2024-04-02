@@ -14,7 +14,7 @@ function SignUpComp() {
   const [showConfPassword, setShowConfPassword] = useState(false);
 
   const [signupDetails, setSignupDetials] = useState({
-    username: "",
+    fullName:"",
     email: "",
     password: "",
     confirmPassword: "",

@@ -8,14 +8,6 @@ const userRegisterValidators=()=>{
                     .withMessage("Email is required")
                     .isEmail()
                     .withMessage("Email is not valid"),
-        body("username")
-                    .trim()
-                    .notEmpty()
-                    .withMessage("Username is required")
-                    .isLowercase()
-                    .withMessage("Username must be lowercase")
-                    .isLength({min:3,max:20})
-                    .withMessage("Username must be between 3 and 20 characters"),
         body("fullName")
                     .trim()
                     .notEmpty()
@@ -31,11 +23,8 @@ const userRegisterValidators=()=>{
 const loginUserValidator=()=>{
     return [ 
         body("email")
-                    .optional()
                     .isEmail()
                     .withMessage("Email is not valid"),
-        body("username")
-                     .optional(),
         body("password")
                     .trim()
                     .notEmpty()
@@ -47,16 +36,11 @@ const loginUserValidator=()=>{
 const userForgotPasswordValidator=()=>{
     return [
         body("email")
-                   .optional()
                    .notEmpty()
                    .withMessage("Email is required")
                    .isEmail()
                    .withMessage("Email is Invalid"),
         
-        body("username")
-                       .optional()
-                       .notEmpty()
-                       .withMessage("username is required")
     ]
 }
 

@@ -26,10 +26,10 @@ const generateAccessAndRefreshToken = async (userId) => {
   };
 
 const registerUser=asyncHandler(async (req,res)=>{
-    const { username,fullName, email, password } = req.body;
+    const { fullName, email, password } = req.body;
 
    const existedUser = await User.findOne({
-    $or: [{ email }, { username }],
+     username 
   });
 
   if (existedUser) {
@@ -48,7 +48,6 @@ const registerUser=asyncHandler(async (req,res)=>{
 
 
   const user = await User.create({
-    username,
     fullName,
     email,
     password,
@@ -76,11 +75,10 @@ const registerUser=asyncHandler(async (req,res)=>{
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, username, password } = req.body;
+    const { email, password } = req.body;
   
-    const user = await User.findOne({
-      $or: [{ email }, { username }],
-    });
+    const user = await User.findOne({ email }
+    );
   
     if (!user) {
       throw new ApiError(401, "Invalid crdentials");
@@ -163,11 +161,9 @@ const logoutUser = asyncHandler(async (req, res) => {
   })
 
   const forgotPassword = asyncHandler(async (req, res) => {
-    const { email, username } = req.body;
+    const { email } = req.body;
   
-    const user = await User.findOne({
-      $or: [{ email }, { username }],
-    });
+    const user = await User.findOne({ email });
   
     if (!user) {
       throw new ApiError("User Does not exist");
@@ -181,7 +177,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     await user.save({ validateBeforeSave: false });
   
     const mailgenContent = await forgotPasswordMailgenContent(
-      user?.username,
+      user?.fullName,
       `${req.protocol}://${req.get(
         "host"
       )}/api/v1/users/reset-password/${unhashedToken}`
