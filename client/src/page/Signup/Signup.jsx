@@ -85,6 +85,8 @@ function Signup() {
   }
 
   return (
+    <div className="flex min-h-screen flex-col justify-center items-center">
+        <h1 className='text-4xl font-serif font-extrabold'>Register Now !</h1>
     <div className="w-96 mx-4 lg:mx-auto mt-10">
     <form onSubmit={onHandleSubmit}>
       <div className="mb-4">
@@ -172,6 +174,7 @@ function Signup() {
         </Link>
       </p>
     </div>
+  </div>
   </div>
   )
 }
