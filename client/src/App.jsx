@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { toast } from "react-toastify";
+import Signup from "./page/Signup/Signup"
+
 
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
   })
   return (
     <Routes>
-      {/* <Route path="/" element={< />} /> */}
+      <Route path="/signup" element={<Signup />} />
       
       
     </Routes>

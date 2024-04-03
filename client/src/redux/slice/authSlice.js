@@ -11,16 +11,11 @@ const initialState = {
   error: null,
   user: parsedUser,
   accessToken: localStorage.getItem("accessToken") || null,
-  role: localStorage.getItem("role") || null,
-  isAdmin: localStorage.getItem("isAdmin") || false,
-  isSuperAdmin: localStorage.getItem("isSuperAdmin") || false,
-  isManager: localStorage.getItem("isManager") || false,
-  isUser: localStorage.getItem("isUser") || false,
 };
 
 export const createAccount = createAsyncThunk("/users/signup", async (data) => {
   try {
-    const response = await axiosInstance.post("users/register", data);
+    const response = await axiosInstance.post("/users/register", data);
     const responseData = response.data;
     toast.success(responseData.message);
     return responseData;
