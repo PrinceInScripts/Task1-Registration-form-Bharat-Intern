@@ -6,7 +6,7 @@ import { upload } from "../middlewares/multer.middlewares.js"
 import { verifyJWT } from "../middlewares/auth.middlewares.js";
 const router=Router()
 
-router.route("/register").post(upload.single("avatar"),userRegisterValidators(),validate,registerUser)
+router.route("/register").post(userRegisterValidators(),validate,registerUser)
 router.route("/login").post(loginUserValidator(),validate,loginUser)
 router.route("/forgot-password").post(userForgotPasswordValidator(),validate,forgotPassword)
 router.route("/reset-password/:resetPasswordToken").post(resetForgotPasswordValidator(),validate,resetForgotPassword)

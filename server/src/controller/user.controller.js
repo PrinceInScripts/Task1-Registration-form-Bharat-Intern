@@ -42,24 +42,10 @@ const registerUser=asyncHandler(async (req,res)=>{
     throw new ApiError(400, "User already exists");
   }
 
-  const avatarLocalPath=req.file?.path;
-  // console.log(req);
-  console.log(avatarLocalPath);
-  if(!avatarLocalPath){
-    throw new ApiError(400,"Avatar file is missing")
-  }
-
-  const avatar=await uploadCloudinary(avatarLocalPath)
-  if(!avatar){
-    throw new ApiError(400,"Error while uploading on avatar file")
-  }
-
-
-  const user = await User.create({
+   const user = await User.create({
     fullName,
     email,
     password,
-    avatar:avatar?.url
   });
 
   
