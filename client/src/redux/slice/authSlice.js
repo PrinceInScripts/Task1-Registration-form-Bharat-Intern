@@ -60,6 +60,22 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
+export const getCurrentUser = createAsyncThunk(
+  "auth/getCurrentUser",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get("/users/me");
+      const responseData = response.data.data;
+      localStorage.setItem("user", JSON.stringify(userData));
+      return responseData;
+    } catch (error) {
+      toast.error("Failed to get current user data");
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+
 
 
 const authSlice = createSlice({
@@ -97,6 +113,18 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
+      .addCase(getCurrentUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(getCurrentUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
       
   },
 });
