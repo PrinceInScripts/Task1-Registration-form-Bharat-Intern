@@ -15,7 +15,7 @@ function Home() {
           <p className="mb-8 font-sans font-semibold">
             Welcome back to our platform! Explore your personalized dashboard and make the most out of our services.
           </p>
-          <Link to="/dashboard" className="btn btn-primary">Go to Dashboard</Link>
+          <Link to="/me" className="btn btn-primary">Go to Profile</Link>
         </div>
       </div>
     ) : (

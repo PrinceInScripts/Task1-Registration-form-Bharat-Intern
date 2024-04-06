@@ -8,6 +8,7 @@ import Login from "./page/Login/Login";
 import ForgotPassword from "./page/ForgotPassword/forgotPassword";
 import ResetPassword from "./page/ResetPassword/ResetPassword";
 import Home from "./page/Home/Home";
+import Profile from "./page/Profile/Profile";
 
 
 
@@ -19,6 +20,7 @@ function App() {
     <Routes>
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<Home />} />
+      <Route path="/me" element={<Profile />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       
