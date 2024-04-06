@@ -1,10 +1,20 @@
 import React from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from '../../redux/slice/authSlice';
 
 
 function Home() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const handleLogout = () => {
+    dispatch(logoutUser())
+      .unwrap()
+      .then(() => {
+        navigate("/login");
+      });
+  };
   return (
     <div>
     {isLoggedIn ? (
@@ -15,7 +25,10 @@ function Home() {
           <p className="mb-8 font-sans font-semibold">
             Welcome back to our platform! Explore your personalized dashboard and make the most out of our services.
           </p>
+          <div className="flex gap-4">
           <Link to="/me" className="btn btn-primary">Go to Profile</Link>
+          <Link to="/logout" onClick={handleLogout} className="btn btn-secondary">Logout</Link>
+        </div>
         </div>
       </div>
     ) : (
