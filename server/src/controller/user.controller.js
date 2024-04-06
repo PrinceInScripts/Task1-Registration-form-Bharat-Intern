@@ -194,8 +194,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   
   const resetForgotPassword = asyncHandler(async (req, res) => {
     const { resetPasswordToken } = req.params;
-    const { newPassword } = req.body;
-  
+    const { password } = req.body;
+
     let hashedToken = crypto
       .createHash("sha256")
       .update(resetPasswordToken)
@@ -210,7 +210,7 @@ const logoutUser = asyncHandler(async (req, res) => {
       throw new ApiError(401, "ResetPasswordToken is invalid or expired");
     }
   
-    user.password = newPassword;
+    user.password = password;
     user.forgotPasswordToken = undefined;
     user.forgotPasswordTokenExpiry = undefined;
     await user.save({ validateBeforeSave: false });
