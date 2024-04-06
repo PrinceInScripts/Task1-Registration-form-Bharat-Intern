@@ -75,6 +75,36 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (forgotPasswordData, thunkAPI) => {
+    try {
+      const response = await axiosInstance.post("/users/forgot-password", forgotPasswordData);
+      const responseData = response.data.data;
+      toast.success("Password reset link sent successfully!");
+      return responseData;
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (resetPasswordData, thunkAPI) => {
+    try {
+      const response = await axiosInstance.post(`/users/reset-password/${resetPasswordData.resetPasswordToken}`, resetPasswordData);
+      const responseData = response.data.data;
+      toast.success("Reset Password successfully!");
+      return responseData;
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 
 
 

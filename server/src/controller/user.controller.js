@@ -172,9 +172,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   
     const mailgenContent = await forgotPasswordMailgenContent(
       user?.fullName,
-      `${req.protocol}://${req.get(
-        "host"
-      )}/api/v1/users/reset-password/${unhashedToken}`
+      `${process.env.FRONTEND_URL}/reset-password/${unhashedToken}`
     );
   
     await sendEmail({

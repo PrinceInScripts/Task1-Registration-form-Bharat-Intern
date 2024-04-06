@@ -95,6 +95,10 @@ function Login() {
             )}
           </label>
         </div>
+        <div className="text-end">
+      <Link to={"/forgot-password"}><a className="link link-primary font-serif font-medium">forgot password?</a></Link>
+          
+        </div>
         <div className="mt-6">
           <button type="submit" className="btn btn-primary w-full">
             Login
