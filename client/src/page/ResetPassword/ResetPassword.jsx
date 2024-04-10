@@ -44,7 +44,7 @@ function ResetPassword() {
     );
 
     if (response?.payload?.success) {
-    //   navigate("/login");
+      navigate("/login");
     setData({
         password: "",
         confirmPassword: "",
